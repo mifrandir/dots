@@ -1,2 +1,4 @@
 #!/bin/bash
-ln -sr ./$1 $1
+REAL=$(realpath $1)
+MANAGED=./$REAL
+ln -sr $MANAGED $REAL

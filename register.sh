@@ -1,4 +1,7 @@
 #!/bin/bash
-cp $1 ./$1
-rm -rf $1
-ln -sr ./$1 $1
+OLD=$(realpath $1)
+NEW="./$OLD"
+printf "%s -> %s\n" $OLD $NEW
+mkdir -p $(dirname $NEW)
+cp $OLD $OLD.bak && cp $OLD $NEW && rm -f $OLD $OLD.bak
+ln -sr $NEW $OLD
