@@ -1,0 +1,10 @@
+{
+  "initializationOptions": {
+    "index": {
+      "onChange": true
+    },
+    "highlight": { "lsRanges" : true }
+  },
+  "clangd.semanticHighlighting": true,
+  "coc.preferences.semanticTokensHighlights": false
+}
