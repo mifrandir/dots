@@ -1,0 +1,312 @@
+snippet c "claim"
+\begin{claim*}[${1}]
+${2}
+\begin{proof}
+${3}
+\end{proof}
+\end{claim*}
+endsnippet
+snippet e "environment"
+\begin{${1}}
+${2}
+\end{${1}}
+endsnippet
+
+snippet ca "cases"
+\begin{cases}
+${1} & \text{ ${2} }
+\end{cases}
+endsnippet
+
+snippet def "definition"
+\begin{definition}
+\label{def:${1}}
+${2}
+\end{definition}
+endsnippet
+
+
+snippet adef "anonymous definition"
+\begin{definition*}
+${2}
+\end{definition*}
+endsnippet
+
+snippet pro "proposition"
+\begin{proposition}
+\label{prop:${1}}
+${2}
+\begin{proof}
+${3}
+\end{proof}
+\end{proposition}
+endsnippet
+
+snippet apro "anonymous proposition"
+\begin{proposition*}
+${1}
+\begin{proof}
+${2}
+\end{proof}
+\end{proposition*}
+endsnippet
+
+snippet thm "theorem"
+\begin{theorem}
+\label{thm:${1}}
+${2}
+\end{theorem}
+endsnippet
+
+snippet athm "anonymous theorem"
+\begin{theorem*}
+${1}
+\end{theorem*}
+endsnippet
+
+snippet alg "algorithm"
+\begin{algorithm}
+\label{alg:${1}}
+${2}
+\end{algorithm}
+endsnippet
+
+snippet aalg "anonymous algorithm"
+\begin{algorithm*}
+${1}
+\end{algorithm*}
+endsnippet
+
+snippet im "inline maths"
+$${1}$
+endsnippet
+
+snippet dm "display maths"
+\begin{align}
+\label{eq:${1}}
+${2}
+\end{align}
+endsnippet
+
+snippet adm "anonymous display maths"
+\begin{align*}
+${1}
+\end{align*}
+endsnippet
+
+snippet s "section"
+
+\section{${1}}
+\label{sec:${2}}
+endsnippet
+
+snippet ss "subsection"
+
+\subsection{${1}}
+\label{sec:${2}}
+endsnippet
+
+snippet env "environment"
+\begin{${1}}
+${2}
+\end{$1}
+endsnippet
+
+snippet sss "subsubsection"
+
+\subsubsection{${1}}
+\label{sec:${2}}
+endsnippet
+
+snippet it "itemize"
+\begin{itemize}
+\item ${1}
+\end{itemize}
+endsnippet
+
+snippet en "enumerate"
+\begin{enumerate}
+\item ${1}
+\end{enumerate}
+endsnippet
+
+snippet i "item"
+
+\item ${1}
+endsnippet
+
+snippet tx "text" i
+\text{${1}}
+endsnippet
+
+snippet tt "texttt" i
+\texttt{${1}}
+endsnippet
+
+snippet ti "textit" i
+\textit{${1}}
+endsnippet
+
+snippet tb "textbf" i
+\textbf{${1}}
+endsnippet
+
+snippet cc "cc" i
+\cc{${1}}
+endsnippet
+
+snippet cr "" i
+\cr{${1}}
+endsnippet
+
+snippet cb "" i
+\cb{${1}}
+endsnippet
+
+snippet rc "" i
+\rc{${1}}
+endsnippet
+
+snippet rr "" i
+\rr{${1}}
+endsnippet
+
+snippet rb "" i
+\rb{${1}}
+endsnippet
+
+snippet bc "" i
+\bc{${1}}
+endsnippet
+
+snippet br "" i
+\br{${1}}
+endsnippet
+
+snippet bb "" i
+\bb{${1}}
+endsnippet
+
+snippet cat "cat" i
+\cat{${1}}
+endsnippet
+
+snippet catop "" i
+\catop{${1}}
+endsnippet
+
+snippet ftor "functor" i
+${1}:\cat{${2}}${3}\to\cat{${4}}
+endsnippet
+
+snippet fr "" i
+\frac{${1}}{${2}}
+endsnippet
+
+snippet io "" i
+\in\Obj\rr{\cat{${1}}}
+endsnippet
+
+snippet cd
+\begin{equation}
+\begin{tikzcd}[row sep=huge, column sep=huge]
+${1}
+\end{tikzcd}
+\end{equation}
+endsnippet
+
+snippet acd
+\begin{equation*}
+\begin{tikzcd}[row sep=huge, column sep=huge]
+${1}
+\end{tikzcd}
+\end{equation*}
+endsnippet
+
+snippet ar "arrow" i
+\arrow{${1}}${2}{${3}}
+endsnippet
+
+snippet lim "" i
+\lim_{${1}} ${2}
+endsnippet
+
+snippet seq "" i
+\rr{${1}}_{n\in\N}
+endsnippet
+
+snippet fam "" i
+\rr{${1}}_{${2}\in${3}}
+endsnippet
+
+snippet nl "" i
+\vabs{${1}}_{${2}}
+endsnippet
+
+snippet nn "" i
+\vabs{${1}}
+endsnippet
+
+snippet nel "" i
+\vabs{-}_{${1}}
+endsnippet
+
+snippet nen "" i
+\vabs{-}
+endsnippet
+
+snippet ntl "" i
+\vabs{-}_{${1}} : ${2} \to \R
+endsnippet
+
+snippet ntn "" i
+\vabs{-} : ${1} \to \R
+endsnippet
+
+snippet vv "" i
+\abs{${1}}
+endsnippet
+
+snippet sum "" i
+\sum_{${1}}^{ ${2} } ${3}
+endsnippet
+
+snippet va "" i
+\va{${1}}
+endsnippet
+
+snippet aa "" i
+\aa{${1}}
+endsnippet
+
+snippet av "" i
+\av{${1}}
+endsnippet
+
+snippet hilb "" i
+\ava{${1}}{${2}}
+endsnippet
+
+snippet q0 "" i
+\qzero
+endsnippet
+
+snippet q1 "" i
+\qone
+endsnippet
+
+snippet q+ "" i
+\qplus
+endsnippet
+
+snippet q- "" i
+\qminus
+endsnippet
+
+snippet lf "" i
+\forall ${1}.\: ${2}
+endsnippet
+
+snippet le "" i
+\exists ${1}. \: ${2}
+endsnippet

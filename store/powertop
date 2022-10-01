@@ -4,7 +4,7 @@ Description=Powertop tunings
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/usr/bin/powertop --auto-tune
+ExecStart=/usr/sbin/powertop --auto-tune
 
 [Install]
 WantedBy=multi-user.target

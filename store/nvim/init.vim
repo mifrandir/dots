@@ -1,5 +1,5 @@
 set relativenumber
-set termguicolors     " enable true colors support
+set termguicolors
 set cursorline
 set scrolloff=8
 set showmatch
@@ -19,8 +19,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rhysd/vim-clang-format'
 Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 Plug 'vim-autoformat/vim-autoformat'
+Plug 'preservim/nerdtree'
+Plug 'sirver/ultisnips'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 lua << END
@@ -33,7 +36,7 @@ require('lualine').setup {
     disabled_filetypes = {
       statusline = {},
       winbar = {},
-    },
+      },
     ignore_focus = {},
     always_divide_middle = true,
     globalstatus = false,
@@ -41,8 +44,8 @@ require('lualine').setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-    }
-  },
+      }
+    },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
@@ -50,7 +53,7 @@ require('lualine').setup {
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
-  },
+    },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
@@ -58,12 +61,12 @@ require('lualine').setup {
     lualine_x = {'location'},
     lualine_y = {},
     lualine_z = {}
-  },
+    },
   tabline = {},
   winbar = {},
   inactive_winbar = {},
   extensions = {},
-}
+  }
 require('lspconfig')['clangd'].setup({})
 require'colorizer'.setup()
 require'nvim-treesitter.configs'.setup {
@@ -74,8 +77,8 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
-  },
-}
+    },
+  }
 END
 
 let ayucolor="mirage"
@@ -83,47 +86,62 @@ colorscheme ayu
 
 filetype plugin indent on
 
-" This enables Vim's and neovim's syntax-related features. Without this, some
-" VimTeX features will not work (see ":help vimtex-requirements" for more
-" info).
 syntax enable
 
-" Viewer options: One may configure the viewer either by specifying a built-in
-" viewer method:
-let g:vimtex_view_method = 'zathura'
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+let maplocalleader = " "
 
-" Most VimTeX mappings rely on localleader and this can be changed with the
-" following line. The default is usually fine and is the symbol "\".
-let maplocalleader = ","
+" file navigation
 
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+,\.aux$,\._aux$,\.bbl$,\.bcf$,\.blg$,\.fdb_latexmk$,\.fls$,\.out$,\.run.xml$,\.synctex.gz$,\.tex.project.vim$,\.toc$'
 let g:netrw_localcopydircmd = 'cp -r'
 let g:netrw_banner = 0
 let g:netrw_keepdir = 0
 
-nnoremap <SPACE> <Nop>
-let mapleader = ","
+let g:NERDTreeIgnore=[ '\(^\|\s\s\)\zs\.\S\+', '\.o$','\~$', '\.aux$','\._aux$','\.bbl$','\.bcf$','\.blg$','\.fdb_latexmk$','\.fls$','\.out$','\.run.xml$','\.synctex.gz$','\.tex.project.vim$','\.toc$','\.log$','_minted']
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+      \ 'Modified'  : 'M',
+      \ 'Staged'    : 'S',
+      \ 'Untracked' : '*',
+      \ 'Renamed'   : 'R',
+      \ 'Unmerged'  : 'U',
+      \ 'Deleted'   : '!',
+      \ 'Dirty'     : 'D',
+      \ 'Clean'     : 'C',
+      \ 'Ignored'   : 'I',
+      \ 'Unknown'   : '?'
+      \ }
+
+let NERDTreeShowBookmarks=1
+
+" navigation and buffers
+
+set splitbelow
+set splitright
+
 nnoremap <leader>ff :CtrlP<CR>
-nnoremap <leader>ft :Texplore %:p:h<CR>
 nnoremap <leader>fd :Explore<CR>
-nnoremap <leader>fce :tabnew /home/mifrandir/.config/nvim/init.vim<CR>
-nnoremap <leader>fcr :source /home/mifrandir/.config/nvim/init.vim<CR>
+nnoremap <leader>ce :tabnew /home/mifrandir/.config/nvim/init.vim<CR>
+nnoremap <leader>cr :source /home/mifrandir/.config/nvim/init.vim<CR>
+nnoremap <leader>se :UltiSnipsEdit<CR>
 nnoremap <leader>en :cn<CR>
-nnoremap <leader>tt :term<CR>
+nnoremap <leader>tt :tab term<CR>
+tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>cf :<C-u>ClangFormat<CR>
+nnoremap <C-w>/ :vsplit<CR>
+nnoremap <C-w>- :split<CR>
+nnoremap <C-w>q :q<CR>
+nnoremap <leader>zz :qa!<CR>
+nnoremap <leader>ft :NERDTreeToggle<CR>
+
+" colours
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set colorcolumn=90
 highlight ColorColumn ctermbg=darkgray
-let g:cpp_function_highlight = 1
-let g:cpp_attributes_highlight = 1
-let g:cpp_member_highlight = 1
-let g:cpp_simple_highlight = 1
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
@@ -133,12 +151,21 @@ au InsertLeave * match ExtraWhitespace /\s\+$/
 au BufWinLeave * call clearmatches()
 set noinfercase
 
-set completeopt-=preview
+" C++
+
+let g:cpp_function_highlight = 1
+let g:cpp_attributes_highlight = 1
+let g:cpp_member_highlight = 1
+let g:cpp_simple_highlight = 1
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+
+set completeopt+=preview
 set completeopt+=menuone,noselect
 let g:clang_library_path = '/usr/local/opt/llvm/lib/libclang.dylib'
 let g:clang_user_options = '-std=c++20'
 let g:clang_complete_auto = 1
-let g:mucomplete#enable_auto_at_startup = 1
 
 let g:cpp_function_highlight = 1
 let g:cpp_attributes_highlight = 1
@@ -146,11 +173,58 @@ let g:cpp_member_highlight = 1
 let g:cpp_simple_highlight = 1
 let g:clang_library_path='/lib64/libclang.so'
 
+" OCaml
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
-
 let g:syntastic_ocaml_checkers = ['merlin']
 
+" LaTeX
+
+let g:vimtex_view_method = 'zathura'
+
+let g:vimtex_compiler_latexmk = {
+      \ 'build_dir' : '',
+      \ 'callback' : 1,
+      \ 'continuous' : 1,
+      \ 'executable' : 'latexmk',
+      \ 'hooks' : [],
+      \ 'options' : [
+        \   '-lualatex',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \   '-shell-escape',
+        \ ],
+        \}
+
+let g:vimtex_compiler_latexmk_engines = {
+      \ '_'                : '-xelatex',
+      \ 'pdflatex'         : '-pdf',
+      \ 'dvipdfex'         : '-pdfdvi',
+      \ 'lualatex'         : '-lualatex',
+      \ 'xelatex'          : '-xelatex',
+      \ 'context (pdftex)' : '-pdf -pdflatex=texexec',
+      \ 'context (luatex)' : '-pdf -pdflatex=context',
+      \ 'context (xetex)'  : '-pdf -pdflatex=''texexec --xtx''',
+      \}
+
+let g:vimtex_compiler_method = 'latexmk'
+
+" formatting
+
 au BufWrite * :Autoformat
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+" snippets
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/UltiSnips']
+let g:UltiSnipsEditSplit="vertical"
+
+let g:python3_host_prog="/usr/bin/python3"
